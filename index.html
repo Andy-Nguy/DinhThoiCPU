@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling Algorithms</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <body>
+        <div id="intro">
+            <h1>Chào mừng đến với Trình mô phỏng CPU Scheduling!</h1>
+            <p>
+                Trang web này giúp bạn khám phá và hiểu rõ hơn về các giải thuật định thời CPU như 
+                <strong>First-Come, First-Served (FCFS)</strong>, 
+                <strong>Shortest Job Next (SJF)</strong>, 
+                <strong>Priority Scheduling</strong>, và 
+                <strong>Round Robin (RR)</strong>. 
+                Hãy thêm tiến trình và quan sát sự khác biệt qua sơ đồ Gantt trực quan.
+            </p>
+            <button id="startBtn">Khám phá ngay</button>
+        </div>
+        <div id="loading" style="display: none;">
+            <p>Đang tính toán...</p>
+            <div class="spinner"></div>
+        </div>
+            
+        <div id="app" style="display: none;"> <!-- Ẩn nội dung chính lúc đầu -->
+            <h1>Minh Họa Giải Thuật Định Thời CPU</h1>
+            <!-- Nội dung cũ -->
+            <select id="algorithm" onchange="toggleTimeQuantum(); togglePriorityColumn();">
+                <option value="fcfs">First-Come, First-Served (FCFS)</option>
+                <option value="sjf">Shortest Job First (SJF)</option>
+                <option value="priority">Priority Scheduling</option>
+                <option value="rr">Round Robin (RR)</option>
+            </select>
+            
+            <input type="number" id="timeQuantum" placeholder="Time Quantum (dành cho RR)" style="display: none;">
+    
+            <button id="addProcessBtn">Thêm Tiến Trình</button>
+            
+            <table id="processTable">
+                <tr>
+                    <th>Tiến Trình</th>
+                    <th>Thời Gian Đến</th>
+                    <th>Thời Gian Burst</th>
+                    <th id="priorityColumn" style="display: none;">Độ Ưu Tiên</th>
+                </tr>
+            </table>
+    
+            <button id="runAlgorithmBtn">Chạy Giải Thuật</button>
+            <button id="clearOutputBtn">Xóa Nội Dung</button>
+
+    
+            <div id="ganttChart" style="margin-top: 20px;">
+                <h3>Sơ đồ Gantt:</h3>
+                <canvas id="ganttCanvas" width="800" height="100"></canvas>
+            </div>
+    
+            <div id="output"></div>
+
+
+
+        </div>
+        <!-- <script src="script.js"></script> -->
+        <script src="test.js"></script>
+    </body>
+
+
+<!-- 
+    <h1>Minh Họa Giải Thuật Định Thời CPU</h1>
+    <div id="app"> -->
+        <!-- <select id="algorithm" onchange="toggleTimeQuantum(); togglePriorityColumn();">
+            <option value="fcfs">First-Come, First-Served (FCFS)</option>
+            <option value="sjf">Shortest Job Next (sjf)</option>
+            <option value="priority">Priority Scheduling</option>
+            <option value="rr">Round Robin (RR)</option>
+        </select>
+        
+        <input type="number" id="timeQuantum" placeholder="Time Quantum (dành cho RR)" style="display: none;">
+
+        <button id="addProcessBtn">Thêm Tiến Trình</button>
+        
+        <table id="processTable">
+            <tr>
+                <th>Tiến Trình</th>
+                <th>Thời Gian Đến</th>
+                <th>Thời Gian Burst</th>
+                <th id="priorityColumn" style="display: none;">Độ Ưu Tiên</th>
+            </tr>
+        </table>
+
+        <button id="runAlgorithmBtn">Chạy Giải Thuật</button>
+
+        <div id="ganttChart" style="margin-top: 20px;">
+            <h3>Sơ đồ Gantt:</h3>
+            <canvas id="ganttCanvas" width="800" height="100"></canvas>
+        </div>
+
+        <div id="output"></div> -->
+    <!-- </div> -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,62 +1,67 @@
-/* body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-#app {
-    margin: 20px auto;
-    width: 300px;
-}
-
-table, th, td {
-    border: 1px solid #000;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-button, select, input {
-    margin: 10px;
-    padding: 5px;
-}
-
-/* button:hover {
-    background-color: burlywood;
-} */ */
-/* Reset mặc định của trình duyệt */
-/* Reset mặc định của trình duyệt */
+Reset cơ bản
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background: linear-gradient(to bottom right, #4caf50, #81c784);
-    color: #fff;
-    font-size: 16px;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#app {
-    max-width: 900px;
-    background: rgba(255, 255, 255, 0.9);
+    background-color: #f4f4f4;
     color: #333;
-    padding: 20px 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-in-out;
+    line-height: 1.6;
 }
 
-/* Hiệu ứng xuất hiện */
-@keyframes fadeIn {
+/* Phần Intro */
+#intro {
+    height: 100vh; /* Chiều cao viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: white;
+    padding: 20px;
+    animation: fadeInSlide 1.5s ease-out;
+}
+
+#intro h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+#intro button {
+    background: linear-gradient(135deg, #388e3c, #1b5e20);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#intro button:hover {
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Hiệu ứng chuyển động */
+@keyframes fadeInSlide {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(50px);
     }
     to {
         opacity: 1;
@@ -64,164 +69,171 @@ body {
     }
 }
 
+/* Trang chính */
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
     font-size: 2.5rem;
-    color: #4caf50;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    animation: popIn 1s ease;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Hiệu ứng bật */
-@keyframes popIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+#app {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-select, input[type="number"], button {
-    font-size: 1rem;
-    padding: 10px 15px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    outline: none;
-    display: block;
+/* Dropdown chọn thuật toán */
+#algorithm {
     width: 100%;
-    transition: all 0.3s ease;
-    background: #fff;
+    max-width: 400px;
+    padding: 10px;
+    margin: 20px auto;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    background: white;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-select {
-    cursor: pointer;
-    border: 1px solid #4caf50;
+#timeQuantum {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 20px auto;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    font-size: 1rem;
 }
 
-select:hover {
-    background: #f1fff0;
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
-}
-
+/* Nút thêm và chạy thuật toán */
 button {
-    background: linear-gradient(to right, #4caf50, #81c784);
+    display: block;
+    background: linear-gradient(135deg, #388e3c, #1b5e20);
     color: white;
-    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 1rem;
     border: none;
+    border-radius: 10px;
+    margin: 20px auto;
     cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background: linear-gradient(to right, #388e3c, #66bb6a);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #4caf50, #388e3c);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* Bảng tiến trình */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    animation: slideIn 1s ease-out;
+    margin: 20px 0;
 }
 
-/* Hiệu ứng trượt */
-@keyframes slideIn {
-    from {
-        transform: translateX(-50%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-table th, table td {
-    padding: 12px 20px;
+th, td {
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
 }
 
-table th {
-    background: linear-gradient(to right, #4caf50, #81c784);
+th {
+    background-color: #4caf50;
     color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
 }
 
-table tr:nth-child(even) {
-    background: rgba(245, 245, 245, 0.9);
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-table tr:hover {
-    background: rgba(200, 230, 201, 0.8);
-    cursor: pointer;
-    transform: scale(1.02);
-    transition: all 0.2s ease;
+tr:hover {
+    background-color: #f1f1f1;
 }
 
+/* Sơ đồ Gantt */
 #ganttChart {
+    margin-top: 40px;
     text-align: center;
-    margin-top: 30px;
 }
 
-canvas {
-    border: 2px solid #81c784;
-    border-radius: 15px;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+#ganttCanvas {
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Kết quả */
 #output {
-    background: #fff;
-    padding: 15px;
     margin-top: 20px;
+    padding: 20px;
+    background: #e8f5e9;
     border-left: 5px solid #4caf50;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #output h3 {
-    color: #4caf50;
+    font-size: 1.5rem;
+    color: #388e3c;
     margin-bottom: 10px;
 }
 
-#output p {
+
+#clearOutputBtn {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: white;
+    padding: 10px 20px;
     font-size: 1rem;
-    color: #333;
-    margin: 5px 0;
+    border: none;
+    border-radius: 10px;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: block;
 }
 
-/* Hiệu ứng khi rê vào ô input */
-input[type="number"]:hover {
-    border-color: #4caf50;
-    background: #f9fff4;
+#clearOutputBtn:hover {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-input[type="number"] {
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+/* phần bổ xung */
+/* Hiệu ứng Loading */
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    display: none; /* Ẩn mặc định */
 }
 
-input[type="number"]:focus {
-    border-color: #388e3c;
-    background: #e8f5e9;
-    outline: none;
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4caf50;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

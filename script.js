@@ -151,48 +151,70 @@ function priorityScheduling() {
 //     return result;
 // }
 function roundRobin(timeQuantum) {
-    // Validate the time quantum
+    // Kiểm tra giá trị timeQuantum
     if (timeQuantum <= 0) {
-        throw new Error("Time quantum must be a positive number.");
+        throw new Error("Time quantum phải là một số dương.");
     }
 
-    let time = 0;  // Current time
-    let result = [];  // Store the result of the scheduling
-    let queue = [];  // Queue for processes that are ready to execute
-    let pending = [...processes];  // Copy of processes to keep track of pending ones
+    let time = 0;  // Thời gian hiện tại
+    let result = [];  // Lưu kết quả lên lịch
+    let queue = [];  // Hàng đợi các tiến trình sẵn sàng thực thi
+    let pending = [...processes];  // Danh sách các tiến trình đang chờ, sao chép từ processes
 
-    // Sort processes by arrival time initially
+    // Sắp xếp các tiến trình theo thời gian đến ban đầu
     pending.sort((a, b) => a.arrivalTime - b.arrivalTime);
 
     while (queue.length > 0 || pending.length > 0) {
-        // Add newly arrived processes to the queue
+        // Thêm các tiến trình mới đến vào hàng đợi dựa trên thời gian đến
         while (pending.length > 0 && pending[0].arrivalTime <= time) {
             queue.push(pending.shift());
         }
 
-        // If the queue is empty, but there are pending processes, jump to the next pending process
-        if (queue.length === 0) {
-            // Move time forward to the next pending process's arrival
+        // Nếu hàng đợi trống nhưng vẫn còn tiến trình pending, nhảy tới thời gian đến của tiến trình tiếp theo
+        if (queue.length === 0 && pending.length > 0) {
+            // Cập nhật thời gian hiện tại tới thời gian đến của tiến trình pending tiếp theo
             time = pending[0].arrivalTime;
-            continue;  // Skip the rest of the loop to re-check for new arrivals
+            continue;  // Bỏ qua phần còn lại của vòng lặp để kiểm tra lại các tiến trình mới đến
         }
 
-        const process = queue.shift();  // Get the next process from the queue
-        const timeToRun = Math.min(process.burstTime, timeQuantum);  // Determine how long to run this process
-        
-        // Record the start and end times for this process
-        result.push({ id: process.id, start: time, end: time + timeToRun });
-        time += timeToRun;  // Increment the current time
-        process.burstTime -= timeToRun;  // Decrease the remaining burst time
+        // Nếu hàng đợi trống và không còn tiến trình pending, dừng vòng lặp
+        if (queue.length === 0) {
+            break;
+        }
 
-        // If the process is not finished, re-queue it
+        // Lấy tiến trình tiếp theo từ hàng đợi
+        const process = queue.shift();  
+        
+        // Ghi lại thời gian bắt đầu và kết thúc của tiến trình này
+        const timeToRun = Math.min(process.burstTime, timeQuantum);
+        result.push({ id: process.id, start: time, end: time + timeToRun });
+
+        // Cập nhật thời gian hiện tại
+        time += timeToRun;
+
+        // Giảm thời gian còn lại của tiến trình
+        process.burstTime -= timeToRun;
+
+        // Nếu tiến trình chưa hoàn thành, đưa lại vào hàng đợi
         if (process.burstTime > 0) {
             queue.push(process);
         }
+
+        // Đảm bảo hàng đợi được thêm các tiến trình mới nếu thời gian đã qua
+        // bằng cách thêm các tiến trình pending đã đến trong thời gian này
+        while (pending.length > 0 && pending[0].arrivalTime <= time) {
+            queue.push(pending.shift());
+        }
     }
-    
-    return result;  // Return the scheduling result
+
+    return result;  // Trả về kết quả lịch trình
 }
+
+
+
+
+
+
 
 
 function displayResult(result) {
@@ -476,3 +498,33 @@ function runAlgorithm() {
         displayResult(result);
     }, 1500); // Đặt độ trễ 2 giây để hiển thị loading
 }
+
+//Trang trí 
+// Đóng Popup khi người dùng bấm nút
+function closePopup() {
+    const popup = document.getElementById("popup");
+    popup.style.visibility = "hidden";
+    popup.style.opacity = "0";
+}
+
+// Thêm hiệu ứng tuyết rơi động
+document.addEventListener("DOMContentLoaded", function() {
+    const snowflakes = ["❄️", "❆", "❅"];
+    const numberOfSnowflakes = 100;
+
+    for (let i = 0; i < numberOfSnowflakes; i++) {
+        const snowflake = document.createElement("div");
+        snowflake.classList.add("snowflake");
+        snowflake.textContent = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+        snowflake.style.left = Math.random() * 100 + "%";
+        snowflake.style.animationDuration = Math.random() * (12 - 8) + 8 + "s"; // Tạo tuyết rơi ngẫu nhiên
+        document.body.appendChild(snowflake);
+    }
+
+    // Mở Popup sau 2 giây
+    setTimeout(function() {
+        const popup = document.getElementById("popup");
+        popup.style.visibility = "visible";
+        popup.style.opacity = "1";
+    }, 2000);
+});
